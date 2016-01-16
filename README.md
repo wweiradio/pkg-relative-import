@@ -45,7 +45,7 @@ This indicates that :
  * relative import applys only in package
  * whether it is a package depends on where to launch the command. The directory containing the launching python file is not treated as package anymore
 
-from above explanation, you can see why [[http://stackoverflow.com/questions/1918539/can-anyone-explain-pythons-relative-imports# | relative import does not work]]
+from above explanation, you can see why the [relative import does not work](http://stackoverflow.com/questions/1918539/can-anyone-explain-pythons-relative-imports#)
 
 
 ## start.py
