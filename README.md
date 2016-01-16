@@ -47,3 +47,33 @@ This indicates that :
 from above explanation, you can see why [[http://stackoverflow.com/questions/1918539/can-anyone-explain-pythons-relative-imports# | relative import does not work]]
 
 
+## start.py
+If you run start.py in the root directory, no errors found.
+<code>
+D:\Python27\python.exe /src/python/pkg-relative-import/start.py
+in parent
+in top level parent
+in sub2 relative2
+run relative after parent
+
+Process finished with exit code 0
+
+</code>
+
+But if you run start.py in pkg/start.py, the ValueError fires.
+<code>
+D:\Python27\python.exe E:/kka/src/python/pkg-relative-import/pkg/start.py
+Traceback (most recent call last):
+  File "E:/kka/src/python/pkg-relative-import/pkg/start.py", line 5, in <module>
+    import sub.relative
+  File "E:\kka\src\python\pkg-relative-import\pkg\sub\relative.py", line 6, in <module>
+    from .. import parent
+ValueError: Attempted relative import beyond toplevel package
+
+</code>
+
+This is because when executing relative.py, from .. import parent, the directory pkg is no longer treated as a package. Therefore, sub is the topmost package. .. is beyond toplevel package.
+
+Hope this readme explain this confusing issue.
+
+
