@@ -1,10 +1,10 @@
 # pkg-relative-import
-==============================
+
 explain why "Attempted relative import beyond toplevel package" is fired
 
 ## relative import
-==============================
-Relative import is introduced in [python packages].(https://docs.python.org/2/tutorial/modules.html#packages).
+
+Relative import is introduced in [python packages](https://docs.python.org/2/tutorial/modules.html#packages).
 
 ```
 sound/                          Top-level package
@@ -34,7 +34,7 @@ sound/                          Top-level package
 
 The explanation in the document failed to mention that it depends on one condition, the interpreter is invoked from outside of the toplevel packages.
 
-If the interperter is invoked from, for example, echo.py, which tries to use formats/wavread.py, the original relative import
+If the interpreter is invoked from, for example, echo.py, which tries to use formats/wavread.py, the original relative import
 ```
         #in echo.py
         from ..formats import wavread
