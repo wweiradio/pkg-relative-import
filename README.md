@@ -1,11 +1,12 @@
 # pkg-relative-import
+==============================
 explain why "Attempted relative import beyond toplevel package" is fired
 
 ## relative import
+==============================
+Relative import is introduced in [python packages].(https://docs.python.org/2/tutorial/modules.html#packages).
 
-Relative import is introduced in [[https://docs.python.org/2/tutorial/modules.html#packages| python packages]].
-
-<code>
+```
 sound/                          Top-level package
       __init__.py               Initialize the sound package
       formats/                  Subpackage for file format conversions
@@ -29,15 +30,15 @@ sound/                          Top-level package
               vocoder.py
               karaoke.py
               ...
-</code>
+```
 
 The explanation in the document failed to mention that it depends on one condition, the interpreter is invoked from outside of the toplevel packages.
 
 If the interperter is invoked from, for example, echo.py, which tries to use formats/wavread.py, the original relative import
-<code>
+```
         #in echo.py
         from ..formats import wavread
-</code>
+```
 will not work. And it will fire 'ValueError: Attempted relative import in non-package'.
 
 This indicates that :
@@ -48,8 +49,10 @@ from above explanation, you can see why [[http://stackoverflow.com/questions/191
 
 
 ## start.py
+==============================
+
 If you run start.py in the root directory, no errors found.
-<code>
+```
 D:\Python27\python.exe /src/python/pkg-relative-import/start.py
 in parent
 in top level parent
@@ -58,10 +61,11 @@ run relative after parent
 
 Process finished with exit code 0
 
-</code>
+```
 
 But if you run start.py in pkg/start.py, the ValueError fires.
-<code>
+
+```
 D:\Python27\python.exe E:/kka/src/python/pkg-relative-import/pkg/start.py
 Traceback (most recent call last):
   File "E:/kka/src/python/pkg-relative-import/pkg/start.py", line 5, in <module>
@@ -70,7 +74,7 @@ Traceback (most recent call last):
     from .. import parent
 ValueError: Attempted relative import beyond toplevel package
 
-</code>
+```
 
 This is because when executing relative.py, from .. import parent, the directory pkg is no longer treated as a package. Therefore, sub is the topmost package. .. is beyond toplevel package.
 
